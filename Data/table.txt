@@ -1,0 +1,6 @@
+ feat=xlsread('combined_feat.xlsx');
+featCategorical = table(feat(:,1),feat(:,2),feat(:,3),feat(:,4),feat(:,5),feat(:,6));
+ featCategorical.Properties.VariableNames = {'mean','rms','var','sd','max','class'};
+
+
+//this will create table called featCategorical which then can be directly imported into the classification learner application in matlab for training the classifier.

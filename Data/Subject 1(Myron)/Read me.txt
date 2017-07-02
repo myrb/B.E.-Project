@@ -1,0 +1,3 @@
+The folders finger, openclose, palm and relaxed contain rectified data of the muscle group Flexor Digitorum Profundus.
+Featurs such as mean average value(MAV), root mean square(RMS),varience(VAR),standard deviation(SD) and peak value(MAX) are extrcated stored in respective excel files.
+Features of all the gestures are then combined in the order openclose,palm,relaxed and finger into the file myr_feat.  

@@ -1,0 +1,73 @@
+function  doTask(x)
+clear arduino_board;
+port = 'COM3';
+
+% model of your arduino board
+
+board = 'Uno';
+
+% creating arduino object with servo library
+
+arduino_board = arduino(port, board, 'Libraries', 'Servo');
+
+% creating servo motor object
+
+servo_motor1 = servo(arduino_board, 'D3');
+servo_motor2 = servo(arduino_board, 'D5');
+servo_motor3 = servo(arduino_board, 'D6');
+servo_motor4 = servo(arduino_board, 'D9');
+servo_motor5 = servo(arduino_board, 'D10');
+servo_motor6 = servo(arduino_board, 'D11');
+writePosition(servo_motor1,0.5);
+writePosition(servo_motor2,0.5);
+writePosition(servo_motor3,0.5);
+writePosition(servo_motor4,0.5);
+writePosition(servo_motor5,0.5);
+writePosition(servo_motor6,0.5);
+if(x==1)%openclose
+    writePosition(servo_motor1,0);
+    %pause(0.5);
+    writePosition(servo_motor2,0);
+    %pause(0.5);
+    writePosition(servo_motor3,0);
+    %pause(0.5);
+    writePosition(servo_motor4,0);
+    %pause(0.5);
+    writePosition(servo_motor5,0);
+    pause(2);
+    writePosition(servo_motor1,1);
+    %pause(0.2);
+    writePosition(servo_motor2,1);
+    %pause(0.2);
+    writePosition(servo_motor3,1);
+    %pause(0.2);
+    writePosition(servo_motor4,1);
+    %pause(0.2);
+    writePosition(servo_motor5,1);
+    pause(1);
+
+elseif(x==4)%middlefinger
+    writePosition(servo_motor3,0);
+    pause(1);
+    writePosition(servo_motor3,1);
+    pause(0.5);
+
+elseif(x==2)%palm
+    writePosition(servo_motor6,0);
+    pause(1);
+    writePosition(servo_motor6,1);
+
+elseif(x==3)%relaxed
+    writePosition(servo_motor1,0.5);
+    writePosition(servo_motor2,0.5);
+    writePosition(servo_motor3,0.5);
+    writePosition(servo_motor4,0.5);
+    writePosition(servo_motor5,0.5);
+    writePosition(servo_motor6,0.5);
+end
+writePosition(servo_motor1,0.5);
+writePosition(servo_motor2,0.5);
+writePosition(servo_motor3,0.5);
+writePosition(servo_motor4,0.5);
+writePosition(servo_motor5,0.5);
+writePosition(servo_motor6,0.5);

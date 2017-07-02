@@ -1,0 +1,19 @@
+%Acquire the data
+device = daq.getDevices %look for devices connected
+s = daq.createSession('ni'); %create a session
+addAnalogInputChannel(s,'Dev1', 0, 'Voltage'); %select the analog input voltage channel 0
+s.Rate=1000; %set rate at 1000 samples per second
+s.DurationInSeconds = 1; %set duration of data aquisition duration of one second
+[data,time] = s.startForeground; %start aquiring data and corresponding time
+ plot(data); % plot data(optional)
+%finding features
+mn=mean(data);
+rn=rms(data);
+v=var(data);
+sd=std(data);
+ ma=max(data);
+ T=[mn rn v sd ma]; %arrange extracted features into the array T
+ %test validation
+ yfit = predict(trainedClassifier, T);
+doTask(yfit); %perform the predicted action
+ 
