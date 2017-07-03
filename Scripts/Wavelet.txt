@@ -1,0 +1,31 @@
+for k = 1:70
+	% Create a mat filename, and load it into a structure called matData.
+    %Change the filename according to the folder you're in
+	matFileName = sprintf('finger%d.xlsx', k);
+  
+	if exist(matFileName, 'file')
+		data = xlsread(matFileName);
+        data = data(:,2);N = 2;%decompostion level.
+        data = data - mean(data);
+        [C,L] = wavedec(data,N,'rbio2.2');
+        %[cd2] = detcoef(C,L,[2]);
+        cd2 =appcoef(C,L,'rbio2.2',2);
+       
+        %features(Add more features!)
+        cdm = mean(cd2);
+        cd2var = var(cd2);
+         cd2rms = rms(cd2);
+         cd2max = max(cd2);
+        %cd2std = std(cd2);gives values close to RMS.
+       
+%         for j = 1:length(cd2)
+%         
+%           energy = sum(abs(cd2).^2);
+%         end
+        feat_arr = [cdm cd2var cd2rms cd2max];
+        xlsappend('approxrbio2.2.xlsx',feat_arr);%append each time 
+      
+	else
+		fprintf('File %s does not exist.\n', matFileName);
+    end
+end

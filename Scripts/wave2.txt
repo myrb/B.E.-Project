@@ -1,0 +1,25 @@
+data = xlsread('openclose49.xlsx');
+data = data(:,2);N = 4;
+data = data - mean(data);
+[C,L] = wavedec(data,N,'db3');
+[cd1,cd2,cd3,cd4] = detcoef(C,L,[1,2,3,4]);
+a2= appcoef(C,L,'db3',2);
+a1 =appcoef(C,L,'db3',1);
+a4 =appcoef(C,L,'db3',4);
+figure(1);plot(data);title('original signal');
+figure(2);plot(a1);title('cA1');
+figure(3);
+ subplot(221);plot(cd1);title('cD1');
+ subplot(222);plot(cd2);title('cD2');
+ subplot(223);plot(cd3);title('cD3');
+ subplot(224);plot(cd4);title('cD4');
+ figure(4);
+ plot(a2);title('cA2');
+%figure(4);plot(a1);title('ca1');
+% raw_mean = mean(data);
+% ma1 = mean(a1);
+% ma2 = mean(a2);
+% md2 = mean(cd2);
+% md3 = mean(cd3);
+% feat_arr = [raw_mean ma1 ma2 md2 md3];
+
